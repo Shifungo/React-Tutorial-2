@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { FavoristesContextProvider } from "./store/favorites-context";
+import { FavoritesContextProvider } from "./store/favorites-context";
 import "./index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <FavoristesContextProvider>
+  <FavoritesContextProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </FavoristesContextProvider>
+  </FavoritesContextProvider>
 );

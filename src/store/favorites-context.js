@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import React from "react";
 
-const FavoristesContext = createContext({
+const FavoritesContext = createContext({
   favorites: [],
   totalFavorites: 0,
   addFavorite: (favoriteMeetup) => {},
@@ -9,8 +9,19 @@ const FavoristesContext = createContext({
   itemIsFavorite: (meetupId) => {},
 });
 
-export function FavoristesContextProvider(props) {
+export function FavoritesContextProvider(props) {
   const [userFavorites, setUserFavorites] = useState([]);
+
+  const data = userFavorites;
+
+  useEffect(() => {
+    window.localStorage.setItem("Favorites", JSON.stringify(data));
+  });
+  const SavedFav = JSON.parse(window.localStorage.getItem("Favorites"));
+
+  useEffect(() => {
+    if (SavedFav !== null) setUserFavorites(SavedFav);
+  }, []);
 
   function addFavoriteHandler(favoriteMeetup) {
     setUserFavorites((prevUserFavorites) => {
@@ -32,15 +43,15 @@ export function FavoristesContextProvider(props) {
     favorites: userFavorites,
     totalFavorites: userFavorites.length,
     addFavorite: addFavoriteHandler,
-    revomeFavorite: removeFavoriteHandler,
+    removeFavorite: removeFavoriteHandler,
     itemIsFavorite: itemIsFavoriteHandler,
   };
 
   return (
-    <FavoristesContext.Provider value={context}>
+    <FavoritesContext.Provider value={context}>
       {props.children}
-    </FavoristesContext.Provider>
+    </FavoritesContext.Provider>
   );
 }
 
-export default FavoristesContext;
+export default FavoritesContext;
