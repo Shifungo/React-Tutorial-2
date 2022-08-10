@@ -1,11 +1,22 @@
 import classes from "./MeetupItem.module.css";
 import React from "react";
 import Card from "../ui/Card";
-import { useContext } from "react";
+import { useContext, useState, navigate } from "react";
 import FavoristesContext from "../../store/favorites-context";
+import EditMeeup from "./EditMeetp";
 
 function MeetupItem(props) {
+  const [editingMode, setEditingMode] = useState(true);
+
   const favoriteCtx = useContext(FavoristesContext);
+
+  function toggleEditingMode() {
+    if (editingMode) {
+      setEditingMode(false);
+    } else {
+      setEditingMode(true);
+    }
+  }
 
   const itemIsFavorite = favoriteCtx.itemIsFavorite(props.id);
 
@@ -16,31 +27,55 @@ function MeetupItem(props) {
       favoriteCtx.addFavorite({
         id: props.id,
         title: props.title,
-        decrepition: props.description,
-        iamge: props.image,
+        description: props.description,
+        image: props.image,
         address: props.address,
       });
     }
   }
 
+  let teste;
+
+  if (editingMode === false) {
+    teste = (
+      <EditMeeup
+        id={props.id}
+        title={props.title}
+        image={props.image}
+        address={props.address}
+        description={props.description}
+      />
+    );
+  } else {
+    teste = null;
+  }
+
   return (
-    <li className={classes.item}>
-      <Card>
-        <div className={classes.image}>
-          <img src={props.image} alt={props.title} />
-        </div>
-        <div className={classes.content}>
-          <h3>{props.title}</h3>
-          <address>{props.address}</address>
-          <p>{props.description}</p>
-        </div>
-        <div className={classes.actions}>
-          <button onClick={toggleFavoriteStatusHandler}>
-            {itemIsFavorite ? "Remove from Favorites" : "To Favorites"}
-          </button>
-        </div>
-      </Card>
-    </li>
+    <div className={classes.itemWrapper}>
+      <li className={classes.item}>
+        <Card>
+          <div className={classes.image}>
+            <img src={props.image} alt={props.title} />
+          </div>
+          <div className={classes.content}>
+            <h3>{props.title}</h3>
+            <address>{props.address}</address>
+            <p>{props.description}</p>
+          </div>
+          <div className={classes.actions}>
+            <button onClick={toggleFavoriteStatusHandler}>
+              {itemIsFavorite ? "Remove from Favorites" : "To Favorites"}
+            </button>
+          </div>
+          <div className={classes.edtBtnDiv}>
+            <button className={classes.edtBtn} onClick={toggleEditingMode}>
+              Edit
+            </button>
+          </div>
+        </Card>
+      </li>
+      {teste}
+    </div>
   );
 }
 

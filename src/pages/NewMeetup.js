@@ -22,8 +22,11 @@ function NewMeetupPage() {
 
   return (
     <section>
-      <h1>Add New Meetup</h1>
-      <NewMeetupForm onAddMeetup={addMeetupHandler} />
+      <div>
+        <h1>Add New Meetup</h1>
+        <NewMeetupForm onAddMeetup={addMeetupHandler} />
+      </div>
+      <div className="actions"></div>
     </section>
   );
 }

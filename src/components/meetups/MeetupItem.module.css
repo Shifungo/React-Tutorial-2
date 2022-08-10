@@ -1,5 +1,6 @@
 .item {
   margin: 1rem 0;
+  width: 100%;
 }
 
 .image {
@@ -43,4 +44,32 @@
 .actions button:hover,
 .actions button:active {
   background-color: #ffe2ed;
+}
+
+.boxTest {
+  width: 100%;
+  height: 20rem;
+  background-color: black;
+}
+.edtBtnDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+.edtBtn {
+  font: inherit;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+}
+
+.edtBtnDiv button:hover,
+.edtBtnDiv button:active {
+  background-color: #ffe2ed;
+}
+
+.itemWrapper {
+  display: flex;
 }
