@@ -52,28 +52,30 @@ function MeetupItem(props) {
 
   return (
     <div className={classes.itemWrapper}>
-      <li className={classes.item}>
-        <Card>
-          <div className={classes.image}>
-            <img src={props.image} alt={props.title} />
-          </div>
-          <div className={classes.content}>
-            <h3>{props.title}</h3>
-            <address>{props.address}</address>
-            <p>{props.description}</p>
-          </div>
-          <div className={classes.actions}>
-            <button onClick={toggleFavoriteStatusHandler}>
-              {itemIsFavorite ? "Remove from Favorites" : "To Favorites"}
-            </button>
-          </div>
-          <div className={classes.edtBtnDiv}>
-            <button className={classes.edtBtn} onClick={toggleEditingMode}>
-              Edit
-            </button>
-          </div>
-        </Card>
-      </li>
+      <div>
+        <li className={classes.item}>
+          <Card>
+            <div className={classes.image}>
+              <img src={props.image} alt={props.title} />
+            </div>
+            <div className={classes.content}>
+              <h3>{props.title}</h3>
+              <address>{props.address}</address>
+              <p>{props.description}</p>
+            </div>
+            <div className={classes.actions}>
+              <button onClick={toggleFavoriteStatusHandler}>
+                {itemIsFavorite ? "Remove from Favorites" : "To Favorites"}
+              </button>
+            </div>
+            <div className={classes.edtBtnDiv}>
+              <button className={classes.edtBtn} onClick={toggleEditingMode}>
+                Edit
+              </button>
+            </div>
+          </Card>
+        </li>
+      </div>
       {teste}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useRef, navigate } from "react";
 import Card from "../ui/Card";
-import classes from "./NewMeetupForm.module.css";
+import classes from "./EditMeetp.module.css";
 
 function EditMeeup(props) {
   const titleInputRef = useRef();
@@ -47,55 +47,57 @@ function EditMeeup(props) {
   }
 
   return (
-    <Card>
-      <form action="" className={classes.form} onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor="title">Meetup Title</label>
-          <input
-            type="text"
-            required
-            id="title"
-            defaultValue={props.title}
-            ref={titleInputRef}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="image">Meetup Image</label>
-          <input
-            type="url"
-            required
-            id="image"
-            defaultValue={props.image}
-            ref={imageInputRef}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="address">Adress</label>
-          <input
-            type="text"
-            required
-            id="adress"
-            defaultValue={props.address}
-            ref={adressInputRef}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="description">description</label>
-          <textarea
-            name=""
-            id="descrition"
-            required
-            cols="30"
-            rows="5"
-            defaultValue={props.description}
-            ref={descripitionInputRef}
-          ></textarea>
-        </div>
-        <div className={classes.actions}>
-          <button>Save Meetup</button>
-        </div>
-      </form>
-    </Card>
+    <div className={classes.form}>
+      <Card>
+        <form action="" onSubmit={submitHandler}>
+          <div className={classes.control}>
+            <label htmlFor="title">Meetup Title</label>
+            <input
+              type="text"
+              required
+              id="title"
+              defaultValue={props.title}
+              ref={titleInputRef}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="image">Meetup Image</label>
+            <input
+              type="url"
+              required
+              id="image"
+              defaultValue={props.image}
+              ref={imageInputRef}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="address">Adress</label>
+            <input
+              type="text"
+              required
+              id="adress"
+              defaultValue={props.address}
+              ref={adressInputRef}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="description">description</label>
+            <textarea
+              name=""
+              id="descrition"
+              required
+              cols="30"
+              rows="5"
+              defaultValue={props.description}
+              ref={descripitionInputRef}
+            ></textarea>
+          </div>
+          <div className={classes.actions}>
+            <button>Save Meetup</button>
+          </div>
+        </form>
+      </Card>
+    </div>
   );
 }
 export default EditMeeup;
