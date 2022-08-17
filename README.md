@@ -3,7 +3,7 @@
 ![example image](Untitled.png)
 
 ## Um site simples que foi feito seguindo um tutorial (React Crash Course for Beginners 2021, de Academind no youtube).
-Apos o termino do tutorial, achei um mode de salvar os favoritos na mermoria e editar o meetups na home page.(fiz pela minha propria logica, então pode ter modos mais corretos de se fazer).
+Apos o termino do tutorial, achei um modo de salvar os favoritos na mermoria e editar o meetups na home page.(fiz pela minha propria logica, então pode ter modos mais corretos de se fazer).
 Trabalhando em um modo para atualizar os favoritos quando os meetups são atualizados.
 
 ## A simple website frontend only, made by following (React Crash Course for Beginners 2021, from Academind on youtube).
