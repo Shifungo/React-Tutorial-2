@@ -1,4 +1,4 @@
-import React, { useRef, navigate } from "react";
+import React, { useRef } from "react";
 import Card from "../ui/Card";
 import classes from "./EditMeetp.module.css";
 
@@ -8,48 +8,42 @@ function EditMeeup(props) {
   const adressInputRef = useRef();
   const descripitionInputRef = useRef();
 
+  const id = props.id;
+
+  function deleteItem() {
+    fetch(
+      `https://react-tutorial-d7e2b-default-rtdb.firebaseio.com/meetups/${id}.json`,
+      { method: "DELETE" }
+    );
+  }
+
   function submitHandler(event) {
     event.preventDefault();
-    const id = props.id;
-    const enteredTitle = titleInputRef.current.value;
-    const enteredImage = imageInputRef.current.value;
-    const enteredAdress = adressInputRef.current.value;
-    const enteredDescripiton = descripitionInputRef.current.value;
 
-    const meetupData = {
-      id: props.id,
-      title: enteredTitle,
-      image: enteredImage,
-      address: enteredAdress,
-      description: enteredDescripiton,
-    };
+    fetch(
+      `https://react-tutorial-d7e2b-default-rtdb.firebaseio.com/meetups/${id}.json`,
+      {
+        method: "PATCH",
 
-    function editMeetupData() {
-      fetch(
-        `https://react-tutorial-d7e2b-default-rtdb.firebaseio.com/meetups/${id}.json`,
-        {
-          method: "PATCH",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: enteredTitle,
-            image: enteredImage,
-            address: enteredAdress,
-            description: enteredDescripiton,
-          }),
-        }
-      );
-    }
-
-    editMeetupData(meetupData);
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: titleInputRef.current.value,
+          image: imageInputRef.current.value,
+          address: adressInputRef.current.value,
+          description: descripitionInputRef.current.value,
+        }),
+      }
+    ).then(() => {
+      window.location.reload(false);
+    });
   }
 
   return (
     <div className={classes.form}>
       <Card>
-        <form action="" onSubmit={submitHandler}>
+        <form action="">
           <div className={classes.control}>
             <label htmlFor="title">Meetup Title</label>
             <input
@@ -93,7 +87,12 @@ function EditMeeup(props) {
             ></textarea>
           </div>
           <div className={classes.actions}>
-            <button>Save Meetup</button>
+            <button onClick={submitHandler} type="submit" name="update_button">
+              Save Meetup
+            </button>
+            <button type="submit" onClick={deleteItem} name="delete_button">
+              DELETE
+            </button>
           </div>
         </form>
       </Card>

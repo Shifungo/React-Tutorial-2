@@ -1,6 +1,6 @@
 import React from "react";
 import MeetupList from "../components/meetups/MeetupList";
-import { useState, useEffect, navigate } from "react";
+import { useState, useEffect } from "react";
 
 function AllMeetupsPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -8,6 +8,7 @@ function AllMeetupsPage() {
 
   useEffect(() => {
     setIsLoading(true);
+
     fetch(
       "https://react-tutorial-d7e2b-default-rtdb.firebaseio.com/meetups.json"
     )

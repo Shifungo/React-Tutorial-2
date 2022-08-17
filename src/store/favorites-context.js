@@ -17,6 +17,7 @@ export function FavoritesContextProvider(props) {
   useEffect(() => {
     window.localStorage.setItem("Favorites", JSON.stringify(data));
   });
+
   const SavedFav = JSON.parse(window.localStorage.getItem("Favorites"));
 
   useEffect(() => {

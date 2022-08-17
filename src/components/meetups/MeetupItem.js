@@ -1,12 +1,13 @@
 import classes from "./MeetupItem.module.css";
 import React from "react";
 import Card from "../ui/Card";
-import { useContext, useState, navigate } from "react";
+import { useContext, useState } from "react";
 import FavoristesContext from "../../store/favorites-context";
 import EditMeeup from "./EditMeetp";
+import Backdrop from "../ui/Backdrop";
 
 function MeetupItem(props) {
-  const [editingMode, setEditingMode] = useState(true);
+  const [editingMode, setEditingMode] = useState(false);
 
   const favoriteCtx = useContext(FavoristesContext);
 
@@ -15,6 +16,11 @@ function MeetupItem(props) {
       setEditingMode(false);
     } else {
       setEditingMode(true);
+    }
+  }
+  function closeEditingMode() {
+    if (editingMode === true) {
+      setEditingMode(false);
     }
   }
 
@@ -32,22 +38,6 @@ function MeetupItem(props) {
         address: props.address,
       });
     }
-  }
-
-  let teste;
-
-  if (editingMode === false) {
-    teste = (
-      <EditMeeup
-        id={props.id}
-        title={props.title}
-        image={props.image}
-        address={props.address}
-        description={props.description}
-      />
-    );
-  } else {
-    teste = null;
   }
 
   return (
@@ -76,7 +66,16 @@ function MeetupItem(props) {
           </Card>
         </li>
       </div>
-      {teste}
+      {editingMode ? (
+        <EditMeeup
+          id={props.id}
+          title={props.title}
+          image={props.image}
+          address={props.address}
+          description={props.description}
+        />
+      ) : null}
+      {editingMode ? <Backdrop onClick={closeEditingMode} /> : null}
     </div>
   );
 }
